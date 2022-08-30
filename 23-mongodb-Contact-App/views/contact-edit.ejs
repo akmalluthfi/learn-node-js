@@ -1,0 +1,65 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col col-md-6">
+      <h2>Form Edit Contact</h2>
+      <% if (errors !== false) { %> 
+        <% errors.forEach(error => { %>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Warning!</strong> <%= error.msg %>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+        <% }) %> 
+      <% } %>
+      <form action="/contact?_method=PUT" method="post">
+        <input type="hidden" name="id" value="<%= contact._id %> ">
+        <input
+          type="hidden"
+          class="form-control"
+          id="oldName"
+          name="oldName"
+          value="<%= (contact.oldName) ? contact.oldName : contact.name %>"
+          required
+        />
+        <div class="mb-3">
+          <label for="name" class="form-label">Name </label>
+          <input
+            type="name"
+            class="form-control"
+            id="name"
+            name="name"
+            value="<%= contact.name %>"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number </label>
+          <input
+            type="text"
+            class="form-control"
+            id="phoneNumber"
+            name="phoneNumber"
+            value="<%= contact.phoneNumber %>"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email </label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            value="<%= contact.email %>"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

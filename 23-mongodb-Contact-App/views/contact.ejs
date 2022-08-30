@@ -1,0 +1,51 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col col-md-8">
+      <h2>List Contact</h2>
+      <div class="row justify-content-between my-3">
+        <div class="col-auto">
+          <a href="/contact/add/" class="btn btn-primary">Add new contact</a>
+        </div>
+        <div class="col-auto">
+          <a href="#" class="btn btn-success">download file</a>
+        </div>
+      </div>
+
+      <% if (msg) { %>
+        <div class="mt-3 alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Success!</strong><%= msg %> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% } %>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (contacts.length < 1) { %>
+            <tr>
+              <td colspan="4">
+                <div class="alert alert-danger my-5" role="alert">Empty contact</div>
+              </td>
+            </tr>
+          <% } %>
+          <% contacts.forEach((contact, i) => { %>
+            <tr>
+              <th scope="row"><%= i + 1 %></th>
+              <td><%= contact.name %></td>
+              <td><%= contact.phoneNumber %></td>
+              <td>
+                <a href="/contact/<%= contact.name %>" class="btn btn-success badge rounded-pill"><i class="bi bi-info-circle me-1"></i>detail</a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
